@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import Button from "./components/Button";
+import { ArrowRightIcon } from "@heroicons/react/16/solid";
 
 export default function Home() {
   
@@ -19,7 +23,19 @@ export default function Home() {
 
       {/* button lanjut */}
       <div>
-        
+          <Button 
+                text="Lanjut" 
+                className="w-52 flex items-center justify-center font-medium text-lg rounded-2xl" 
+                onClick={() => window.location.href = "/welcome"}
+            >
+                <ArrowRightIcon className="w-6 h-6 ml-2"/>
+            </Button>
+      </div>
+
+      <div>
+        <p className="font-light text-white text-[10px] md:text-base">
+        Dengan menekan opsi diatas berarti kamu setuju dengan <span className="font-bold">Ketentuan Layanan</span> dan <span className="font-bold">Kebijakan Privasi</span> Follas
+        </p>
       </div>
     </main>
   );

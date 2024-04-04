@@ -1,5 +1,6 @@
+import Register from '@/app/components/RegisterCard'
 import React from 'react'
-import Register from '../components/RegisterCard'
+
 
 function RegisterPage() {
   return (

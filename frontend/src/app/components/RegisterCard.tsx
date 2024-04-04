@@ -24,16 +24,16 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Register</h2>
+    <div className="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+      <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="username"
+          placeholder="Username"
           name="username"
           value={userData.username}
           onChange={handleChange}
-          className="border border-gray-400 rounded-md py-1 px-2 mb-2"
+          className="border border-gray-300 rounded-md py-2 px-4 mb-4 block w-full focus:outline-none focus:border-blue-500"
         />
         <input
           type="email"
@@ -41,7 +41,7 @@ const Register = () => {
           name="email"
           value={userData.email}
           onChange={handleChange}
-          className="border border-gray-400 rounded-md py-1 px-2 mb-2"
+          className="border border-gray-300 rounded-md py-2 px-4 mb-4 block w-full focus:outline-none focus:border-blue-500"
         />
         <input
           type="password"
@@ -49,18 +49,18 @@ const Register = () => {
           name="password"
           value={userData.password}
           onChange={handleChange}
-          className="border border-gray-400 rounded-md py-1 px-2 mb-2"
+          className="border border-gray-300 rounded-md py-2 px-4 mb-4 block w-full focus:outline-none focus:border-blue-500"
         />
         <button
           type="submit"
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md w-full focus:outline-none"
         >
           Register
         </button>
+        <p className="text-center mt-4">Already have an account? <a href="/welcome/login" className="text-blue-500 hover:text-blue-700">Login</a></p>
       </form>
     </div>
   );
 };
 
 export default Register;
-

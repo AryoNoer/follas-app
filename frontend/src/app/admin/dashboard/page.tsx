@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Button from "@/app/components/Button";
 
 interface User {
   id: number;
@@ -11,7 +12,7 @@ interface User {
 }
 
 export default function DashboardAdmin() {
-  const ApiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+  const ApiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
   const [users, setUsers] = useState<User[]>([]);
   const [newUser, setNewUser] = useState<User>({ id: 0, name: '', email: '', password: '' });
   const [updateUser, setUpdateUser] = useState<User>({ id: 0, name: '', email: '', password: '' });
@@ -23,7 +24,7 @@ export default function DashboardAdmin() {
   // Fetch users
   const fetchUsers = async () => {
     try {
-      const response = await axios.get<User[]>(`${ApiUrl}/users`);
+      const response = await axios.get<User[]>(`${ApiUrl}/api/user`);
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -33,7 +34,7 @@ export default function DashboardAdmin() {
   // Create user
   const createUser = async () => {
     try {
-      const response = await axios.post<User>(`${ApiUrl}/users`, newUser);
+      const response = await axios.post<User>(`${ApiUrl}/api/user`, newUser);
       setUsers([...users, response.data]);
     } catch (error) {
       console.error("Error creating user:", error);
@@ -43,7 +44,7 @@ export default function DashboardAdmin() {
   // Update user
   const updateUserDetails = async () => {
     try {
-      const response = await axios.put<User>(`${ApiUrl}/users/${updateUser.id}`, updateUser);
+      const response = await axios.put<User>(`${ApiUrl}/api/user/${updateUser.id}`, updateUser);
       setUsers(users.map((user) => (user.id === response.data.id ? response.data : user)));
     } catch (error) {
       console.error("Error updating user:", error);
@@ -53,7 +54,7 @@ export default function DashboardAdmin() {
   // Delete user
   const deleteUser = async (id: number) => {
     try {
-      await axios.delete(`${ApiUrl}/users/${id}`);
+      await axios.delete(`${ApiUrl}/api/user/${id}`);
       setUsers(users.filter((user) => user.id !== id));
     } catch (error) {
       console.error("Error deleting user:", error);
@@ -62,6 +63,9 @@ export default function DashboardAdmin() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div>
+        <Button text="Add Menu" className="border-black border-2" onClick={() => window.location.href = "/admin/addMenu"} />
+      </div>
       <div>
         <h1 className="text-3xl font-bold mb-4">Users</h1>
         <ul>
